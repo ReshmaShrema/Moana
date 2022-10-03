@@ -1,0 +1,15 @@
+
+  <body>
+        {{#if admin}}
+        {{>admin-header}}
+        {{else if user}}
+        {{>user-header}}
+        {{/if}}
+        {{{body}}}
+        {{#if modelJqury}}
+        {{else}}
+        {{/if}}
+        <!-- JavaScript Bundle with Popper -->
+   
+
+

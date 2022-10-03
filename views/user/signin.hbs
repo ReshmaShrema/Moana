@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div >
+<div >
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+		
+    <a class="navbar-brand" href="#">Welcome To Moana</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse  d-flex justify-content-end" id="navbarTogglerDemo02">
+       <ul class="navbar-nav me-0 d-flex justify-content-end mb-2 mb-lg-0" >
+        {{!-- <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/admin/signup" >Signup</a>
+        </li> --}}
+        {{!-- !-- <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li> -- -- --}}
+      </ul>
+      {{!-- <form class="d-flex ">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form> --}}
+	  <ul class="navbar-nav  d-flex justify-content-end " >
+	  <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/user/signin" >Signin</a>
+        </li>
+	  </ul>
+    </div>
+  
+</nav>
+</div>
+
+
+
+
+
+
+	<div class="container"><br>
+		
+		<div class="col-lg-6 m-auto d-block">
+			
+			<form action="/user/signin" method="post" onsubmit="return validation()" class="bg-light">
+				
+
+
+				
+				
+
+				
+				<div class="form-group">
+          
+
+                             <p class="pb-lg-2" style="color: #f10c0c;">
+                              {{#if logginErr}}
+                              <span>{{message}}</span>
+                          {{/if }}
+                          {{#if blocked}}
+                               <span>Blocked</span>
+                             {{/if }}</p>
+                   
+					<label class="font-weight-bold"> Email: </label>
+					<input type="text" name="email" class="form-control" id="emails" autocomplete="off">
+					<span id="emailids" class="text-danger font-weight-bold"> </span>
+				</div>
+        <div class="form-group">
+					<label class="font-weight-bold"> Password: </label>
+					<input type="password" name="password" class="form-control" id="pass" autocomplete="off">
+					<span id="passwords" class="text-danger font-weight-bold"> </span>
+				</div>
+
+				<input type="submit"  value="Signup" class="btn btn-success" 	autocomplete="off">
+                <p class="mb-5 pb-lg-2" style="color: #393f81;">New User <a href="/user/signup"
+                          style="color: #393f81;"> Signin here</a></p>
+                   
+
+			</form><br><br>
+
+
+		</div>
+	</div>
+</div>
+
+
+	<script type="text/javascript">
+		
+
+		function validation(){
+
+			var pass = document.getElementById('pass').value;
+			var emails = document.getElementById('emails').value;
+
+
+
+
+			
+
+
+
+
+
+			if(pass == ""){
+				document.getElementById('passwords').innerHTML =" ** Please fill the password field";
+				return false;
+			}
+			if((pass.length < 5) || (pass.length > 20)) {
+				document.getElementById('passwords').innerHTML =" ** Passwords lenght must be between  5 and 20";
+				return false;	
+			}
+
+
+			
+
+
+
+			
+
+
+			if(emails == ""){
+				document.getElementById('emailids').innerHTML =" ** Please fill the email idx` field";
+				return false;
+			}
+			if(emails.indexOf('@') <= 0 ){
+				document.getElementById('emailids').innerHTML =" ** @ Invalid Position";
+				return false;
+			}
+
+			if((emails.charAt(emails.length-4)!='.') && (emails.charAt(emails.length-3)!='.')){
+				document.getElementById('emailids').innerHTML =" ** . Invalid Position";
+				return false;
+			}
+		}
+
+	</script>
+
+</body>
+</html>
