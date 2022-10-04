@@ -1,64 +1,43 @@
-var express = require('express');
-const userHelpers = require('../helpers/userHelpers');
-var router = express.Router();
+const express = require('express');
+const router =express.Router();
 
-/* GET users listing. */
 
-//user signup
-router.get('/signup',(req,res)=>{
-  res.render('user/signup')
-})
-router.post('/signup',(req,res)=>{
-  //console.log(req.body);
-      userHelpers.userSignup(req.body).then((response)=>{
-        res.redirect('/')
-      });
+router.get('/signin',(req,res)=>{
+    if(req.session.adminLoggin){
+        res.redirect('/admin');
+        }
+        else{
+            console.log('ssd',req.session.adminLogginErr);
+            res.render('admin/signin',{adminLogginErr:req.session.adminLogginErr,message:req.session.message})
+        }
 });
 
 
-//user signin
-router.get('/signin',(req,res)=>{
-  if(req.session.userLoggin){
-    res.redirect('/');
-  }
-  else{
-    res.render('user/signin',{
-      logginErr:req.session.logginErr,message:req.session.message
-    });
-   req.session.logginErr=false;
- }
-})
-
-router.post('/signin',async(req,res)=>{
-  await userHelpers.userSignin(req.body).then((response)=>{
-    if(response.status){
-      req.session.logginErr=false;
-      req.session.userLogin=true;
-      res.redirect('/');
+router.post('/signin',(req,res)=>{
+    if(req.body.username == process.env.ADMIN_USERNAME){
+        if(req.body.password==process.env.ADMIN_PASSWORD){
+              req.session.adminLoggin=true;
+            req.session.adminLogginErr=false;
+            res.redirect('/admin');
+        }else{
+             req.session.adminLogginErr = true;
+             req.session.message="Invalid Password";
+            res.redirect('/admin/signin')   
+            }
     }
     else{
-      req.session.message=response.message
-      req.session.userLoggin=false
-      req.session.logginErr=true;
-      res.redirect('/user/signin');
-    }
-  })
+        req.session.adminLogginErr=true;
+        req.session.message="Invalid Username"
+        res.redirect('/admin/signin');
+    }    
 })
-
-router.get('/',(req,res)=>{
-  res.render('user/home')
-})
-
-// router.get('/signout',(req,res)=>{
-//   req.session.destroy();
-//   req.session.userLoggin=false;
-//   res.redirect('/');
-// })
+module.exports=router;
 
 
-// //session control on going back to signin
-// res.header(
-//   "Cache-control",
-//   "no-cache,private, no-store, must-revalidate,max-stale=0,post-check=0"
-// );
-module.exports = router;
+
+
+
+
+
+
+

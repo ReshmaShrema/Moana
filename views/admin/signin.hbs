@@ -70,17 +70,17 @@
 				<div class="form-group">
           
 
-                             <p class="pb-lg-2" style="color: #f10c0c;">
-                              {{#if logginErr}}
+                             <p class="pb-lg-2" style="color: #f10c0c;"> <br/>
+								
+                              {{#if adminLogginErr}}
                               <span>{{message}}</span>
                           {{/if }}
-                          {{#if blocked}}
-                               <span>Blocked</span>
-                             {{/if }}</p>
+                          </p>
                    
-					<label class="font-weight-bold"> Email: </label>
-					<input type="text" name="email" class="form-control" id="emails" autocomplete="off">
-					<span id="emailids" class="text-danger font-weight-bold"> </span>
+					
+					<label for="user" class="font-weight-bold"> Username: </label>
+					<input type="text" name="username" class="form-control" id="user" autocomplete="off">
+					<span id="username" class="text-danger font-weight-bold"> </span>
 				</div>
         <div class="form-group">
 					<label class="font-weight-bold"> Password: </label>
@@ -106,16 +106,24 @@
 
 		function validation(){
 
+			var user = document.getElementById('user').value;
 			var pass = document.getElementById('pass').value;
-			var emails = document.getElementById('emails').value;
-
-
-
-
 			
 
 
 
+			if(user == ""){
+				document.getElementById('username').innerHTML =" ** Please fill the username field";
+				return false;
+			}
+			if((user.length <= 2) || (user.length > 20)) {
+				document.getElementById('username').innerHTML =" ** Username lenght must be between 2 and 20";
+				return false;	
+			}
+			if(!isNaN(user)){
+				document.getElementById('username').innerHTML =" ** only characters are allowed";
+				return false;
+			}
 
 
 			if(pass == ""){
@@ -126,30 +134,6 @@
 				document.getElementById('passwords').innerHTML =" ** Passwords lenght must be between  5 and 20";
 				return false;	
 			}
-
-
-			
-
-
-
-			
-
-
-			if(emails == ""){
-				document.getElementById('emailids').innerHTML =" ** Please fill the email idx` field";
-				return false;
-			}
-			if(emails.indexOf('@') <= 0 ){
-				document.getElementById('emailids').innerHTML =" ** @ Invalid Position";
-				return false;
-			}
-
-			if((emails.charAt(emails.length-4)!='.') && (emails.charAt(emails.length-3)!='.')){
-				document.getElementById('emailids').innerHTML =" ** . Invalid Position";
-				return false;
-			}
-		}
-
 	</script>
 
 </body>

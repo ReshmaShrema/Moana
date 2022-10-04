@@ -45,6 +45,16 @@ router.post('/signin',async(req,res)=>{
   })
 })
 
+router.get('/otp',(req,res)=>{
+  res.send('success');
+})
+
+
+
+router.post('/otp',async (req,res)=>{
+  res.send('success')
+})
+
 router.get('/',(req,res)=>{
   res.render('user/home')
 })

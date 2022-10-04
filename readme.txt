@@ -1,2 +1,1 @@
-npx express-generator
-npm i express-handlebars
+adding forgot password in user section with email 
