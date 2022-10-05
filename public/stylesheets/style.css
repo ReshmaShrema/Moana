@@ -14,16 +14,36 @@
   img{
       width: 100%;
   }
-  
+  nav{
+    padding: 7px 10px;
+    width: 100vw;
+    min-height:5rem;
+
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   box-shadow: 0px 4px 31px 14px rgba(0, 0, 0, 0.05);
+}
+nav .nav-leftside{
+    width: 6rem;
+}
+a{
+    text-decoration: none;
+
+}
+nav .nav-btn{
+    font-size: 15px;
+    color: #fff;
+    text-align: center;
+    background: rgba(239, 55, 114, 0.73);
+    margin-right: 1rem;
+}
   /* a,
   a:hover {
       text-decoration: none;
       color: inherit;
   } */
-  a{
-      text-decoration: none;
   
-  }
   textarea:focus,textarea:focus, input:focus{
       outline: none;
   }
@@ -34,33 +54,9 @@
       max-width: 12rem;
   }
   
-  nav{
-      padding: 7px 10px;
-      width: 100vw;
-      min-height:5rem;
   
-     display: flex;
-     align-items: center;
-     justify-content: space-between;
-     box-shadow: 0px 4px 31px 14px rgba(0, 0, 0, 0.05);
-  }
-  nav .nav-leftside{
-      width: 6rem;
-  }
-  nav .nav-rightside{
-      display: flex;
-      align-items: center;
-     gap: 0.5rem;
-     padding-right: 1rem;
   
-  }
-  nav .nav-btn{
-      font-size: 15px;
-      color: #fff;
-      text-align: center;
-      background: rgba(239, 55, 114, 0.73);
-      margin-right: 1rem;
-  }
+  
   
   .icons{
       font-size: 19px;
@@ -85,9 +81,9 @@
   
   /* Admin panel */
   #admin-header .admin-panel-text{
-      color: rgba(239, 55, 114, 0.73);
-      margin-bottom: 0;
-  }
+    color: rgba(239, 55, 114, 0.73);
+    margin-bottom: 0;
+}
   #admin-header .menu ul{
       display: flex;
       gap: 2rem;

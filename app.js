@@ -23,7 +23,7 @@ const db =require('./config/connection');
 const usersRouter = require('./routes/users');
 const adminRouter =require('./routes/admin');
 
-//setting the server up
+//setting the server up,init express app
 const app = express();
 
 //uploading file
@@ -40,6 +40,7 @@ app.use(logger('dev'));
 //parsing data
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 
 //cookieParser midsleware
 app.use(cookieParser());
@@ -73,7 +74,6 @@ db.connect((err)=>{
   else  
   console.log("Database connected")
 })
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

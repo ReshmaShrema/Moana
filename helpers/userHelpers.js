@@ -11,6 +11,7 @@ module.exports={
        // console.log(userData);
         return new Promise(async(response,reject)=>{
             userData.password=await bcrypt.hash(userData.password,10);
+            userData.mobileNumber= `+91${userData.mobileNumber}`
         db.get().collection(collection.USER_COLLECTION).insertOne(userData).then((data)=>{
             response(data);
         });

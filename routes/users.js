@@ -1,6 +1,7 @@
-var express = require('express');
+const express = require('express');
 const userHelpers = require('../helpers/userHelpers');
-var router = express.Router();
+const OTPHelpers=require('../helpers/otp')
+const router = express.Router();
 
 /* GET users listing. */
 
@@ -11,7 +12,10 @@ router.get('/signup',(req,res)=>{
 router.post('/signup',(req,res)=>{
   //console.log(req.body);
       userHelpers.userSignup(req.body).then((response)=>{
+        req.session.userLoggin=true;
+        req.session.userLogginErr=false;
         res.redirect('/')
+        
       });
 });
 
@@ -45,30 +49,61 @@ router.post('/signin',async(req,res)=>{
   })
 })
 
+
 router.get('/otp',(req,res)=>{
-  res.send('success');
+  //backward flow controller
+  res.header(
+        "Cache-control",
+        "no-cache,private, no-store, must-revalidate,max-stale=0,post-check=0"
+      );
+  //console.log(req.session.userLoggin)
+  if(req.session.userLoggin){
+    res.redirect('/');
+  }
+  else{
+    OTPHelpers.sendOTP(req.session.mobileNumber,req.body.mobileNumber);
+            res.render('user/otp',{
+              phoneNumber:req.session.mobileNumber,
+              OTPError:req.session.OTPError
+            });
+            req.session.OTPError=false;
+    
+
+  }
 })
 
 
+// router.get('/otp', (req,res)=>{
+//   //backward flow controller
+//   res.header(
+//     "Cache-control",
+//     "no-cache,private, no-store, must-revalidate,max-stale=0,post-check=0"
+//   );
+//   if(req.session.userLoggin){
+//     res.redirect('/');
+//   }
+//   else{
+//     OTPHelpers.sendOTP(req.session.mobileNumber,req.body.mobileNumber);
+//         res.render('user/otp',{
+//           phoneNumber:req.session.mobileNumber,
+//           OTPError:req.session.OTPError
+//         });
+//         req.session.OTPError=false;
 
-router.post('/otp',async (req,res)=>{
-  res.send('success')
-})
-
-router.get('/',(req,res)=>{
-  res.render('user/home')
-})
-
-// router.get('/signout',(req,res)=>{
-//   req.session.destroy();
-//   req.session.userLoggin=false;
-//   res.redirect('/');
+//   }
 // })
 
+// router.post('/verifyOTP',(req,res)=>{
+//   OTPHelpers.verifyOTP(req.body.OTPValue,r)
+// })
 
-// //session control on going back to signin
-// res.header(
-//   "Cache-control",
-//   "no-cache,private, no-store, must-revalidate,max-stale=0,post-check=0"
-// );
+router.get('/',(req,res)=>{
+  req.session.userLoggin=true;
+  res.render('user/home')
+  
+})
+
+
+
+
 module.exports = router;

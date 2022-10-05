@@ -1,0 +1,57 @@
+    <header>
+       
+      <nav>
+        <div class="nav-leftside">
+          <a href="/">  <img src="/images/logo.png" alt="images"></a>
+   
+        </div>
+      
+        <div class="nav-rightside">
+          {{#if userLoggin}}
+  
+     <div class="login-btn">
+            <a href="/user_logout" type="button" class="btn nav-btn">Logout</a>
+          </div>
+        
+         {{else}}
+
+            <div class="login-btn">
+            <a href="/user_signin" type="button" class="btn nav-btn">Login</a>
+          </div>
+          {{/if}}
+         
+       
+      
+{{!-- home --}}
+          <div class="home icons">
+           <a href="#" title="home"> <i class="bx bxs-home" style="color: #ffffff"></i></a>
+          </div>
+          {{!-- fav --}}
+          <div class="fav icons">
+          <a href="#"> <i class="bx bx-heart" style="color: #fff"></i></a> 
+          </div>
+
+          {{!-- cart --}}
+          <div class="fav icons">
+           <a href="/cart"> <i class="bx bx-cart position-relative" style="color: #fff">
+            {{#if userLoggin}}
+  <span id="cart-count" style="font-size: 10px;background-color:#eb227ddb ;" class="position-absolute  start-100 translate-middle badge rounded-pill ">
+{{cartCount}}
+  </span>
+  {{/if}}
+           </i>
+           </a>
+          
+           
+          </div>
+
+          {{!-- profile --}}
+          <div class="fav icons">
+           <a href="/orders"> <i class="bx bx-user" style="color: #fff"></i></a>
+          </div>
+
+
+
+        </div>
+      </nav>
+    </header>
