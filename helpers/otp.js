@@ -8,27 +8,19 @@ const client =require('twilio')(accountSID,authToken)
 
 module.exports={
 
-    sendOTP:(phoneNumber,mobileNumber)=>{
+sendOTP:(phoneNumber)=>{
         phoneNumber=`+91${phoneNumber}`;
-        if(phoneNumber==mobileNumber){
-            client
+                    client
         .verify
            .services(serviceID)
            .verifications
            .create({
             to:phoneNumber,
-            channel:sms
+            channel:'sms'
            }).then((data)=>{
-            result.message='OTP send to your registered Phonenumber'
-           });
-        }else{
-            return message='Please enter your registered Phone Number';
-        }
-       
+            });   
     },
-
-
-     verifyOTP:(OTPValue,phoneNumber)=>{
+verifyOTP:(OTPValue,phoneNumber)=>{
         return new Promise(async(response,reject)=>{
             phoneNumber=`+91${phoneNumber}`
             let OTP=''
@@ -50,12 +42,10 @@ module.exports={
                 }else{
                     OTPVerify=false
             }})
-                
                 }else{
                     OTPVerify=false
                 }
-                response(OTPVerify)
-                
+                response(OTPVerify)  
             })
         },
      

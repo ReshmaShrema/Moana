@@ -4,9 +4,7 @@
       <h2 class="text-center my-5 ">Add Products</h2>
       <form class="d-flex aling-item-center flex-column" action="/admin/EditProduct/{{editingProduct._id}}" method="post"    enctype="multipart/form-data" >
     
-        <input type="text" name="name" class="form-control mb-3" placeholder="Name" required value="{{editingProduct.name}}">
-
-        <input type="text" name="authname" class="form-control mb-3" placeholder="Author name" required value="{{editingProduct.authname}}">
+        <input type="text" name="name" class="form-control mb-3" placeholder="Name" required value="{{editingProduct.productName}}">
 
         <input type="number" name="price" class="form-control mb-3" placeholder="Price" required value="{{editingProduct.price}}">
 

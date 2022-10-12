@@ -3,7 +3,36 @@ const userHelpers = require('../helpers/userHelpers');
 const OTPHelpers=require('../helpers/otp')
 const router = express.Router();
 
-/* GET users listing. */
+// paypal configuration
+
+
+
+// middleware setting
+const verifyuserlogin = (req, res, next)=>{
+     if(req.session.userLoggin){
+      next();
+     }else{
+      res.redirect('/user/signin')
+     }
+};
+
+// user home page
+router.get("/",async (req,res,next)=>{
+  res.header( "Cache-control",
+  "no-cache,private, no-store, must-revalidate,max-stale=0,post-check=0"
+);
+let cartCount=0;
+if (req.session.userLoggin){
+  cartCount=await userHelpers.getCartCount(req.session.user._id);
+  req.session.cartCount=cartCount;
+}
+const carousal=await 
+res.render('users/home',{
+  user:true,
+  userLoggin:req.session.userLoggin,
+  cartCount
+});
+});
 
 //user signup
 router.get('/signup',(req,res)=>{
@@ -15,7 +44,6 @@ router.post('/signup',(req,res)=>{
         req.session.userLoggin=true;
         req.session.userLogginErr=false;
         res.redirect('/')
-        
       });
 });
 
@@ -27,9 +55,12 @@ router.get('/signin',(req,res)=>{
   }
   else{
     res.render('user/signin',{
-      logginErr:req.session.logginErr,message:req.session.message
+      logginErr:req.session.logginErr,
+      message:req.session.message,
+      blocked:req.session.blocked
     });
    req.session.logginErr=false;
+   req.session.blocked=false;
  }
 })
 

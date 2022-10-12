@@ -1,8 +1,8 @@
 <header id="admin-header">
 
-  <nav>
+  <nav >
     <div class="nav-leftside">
-      <a href="/admin"> <img src="/images/logo.png" alt="images" /></a>
+      <a href="/admin"> <img  style="border-radius: 50%;" src="/images/logo.jpg" alt="images" /></a>
 
     </div>
 
@@ -11,7 +11,7 @@
       <h5 class="admin-panel-text">Adminpanel &nbsp;&nbsp;</h5>
 
     {{else}}
-
+<div style="display:flex;gap:15px;align-items:center">
       <div class="menu">
         <ul>
 
@@ -19,7 +19,7 @@
           <li><a href="/admin/product">Products</a></li>
 
           <li><a href="/admin/orders">Orders</a></li>
-          <li><a href="/admin/users">Users</a></li>
+          <li><a href="/admin/user">User</a></li>
           <li><a href="/admin/edit-page">Home</a></li>  
 
         </ul>
@@ -32,19 +32,9 @@
           class="btn nav-btn"
         >Signout</a>
       </div>
-
+</div>
     {{/if}}
 
   </nav>
 </header>
 
-{{! for toglle the color of menu items on click }}
-<script>
-
-  var list = document.querySelectorAll(".menu > ul > li > a ") for(i in list){
-  list[i].addEventListener("click",function(){ var prevselected =
-  document.querySelectorAll(".active"); if(prevselected.length > 0){
-  prevselected[0].className = prevselected[0].className.replace("active","") }
-  this.className += "active" }) }
-
-</script>

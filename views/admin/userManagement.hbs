@@ -17,13 +17,13 @@
       </tr>
     </thead>
     <tbody>
-   {{#each allUsersDetails}}
+   {{#each allUserDetails}}
       <tr>
         <th scope="row"></th>
-        <td>{{this.name}}</td>
+        <td>{{this.username}}</td>
         <td>{{this.email}}</td>
         <td>{{this.address}}</td>
-        <td>{{this.phone}}</td>
+        <td>{{this.mobileNumber}}</td>
   
          
         <td>
@@ -31,20 +31,20 @@
             {{#if this.blocked}}
 
     
-           <a data-bs-toggle="modal" data-bs-target="#{{this.name}}Model" class="btn btn-success ">Unblock</a>
+           <a data-bs-toggle="modal" data-bs-target="#{{this.username}}Model" class="btn btn-success ">Unblock</a>
 
 
-                   <div class="modal fade" id="{{this.name}}Model" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                   <div class="modal fade" id="{{this.username}}Model" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-success" id="exampleModalLabel">Are you sure to Unblock {{this.name}} ?</h5>
+        <h5 class="modal-title text-success" id="exampleModalLabel">Are you sure to Unblock {{this.username}} ?</h5>
       
       </div>
   
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <a href="/admin/Unblock/{{this._id}}" type="button" class="btn btn-success">Unblock</a>
+        <a href="/admin/user/Unblock/{{this._id}}" type="button" class="btn btn-success">Unblock</a>
       </div>
     </div>
   </div>
@@ -65,7 +65,7 @@
   
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <a href="/admin/block/{{this._id}}" type="button" class="btn btn-danger">Block</a>
+        <a href="/admin/user/block/{{this._id}}" type="button" class="btn btn-danger">Block</a>
       </div>
     </div>
   </div>
